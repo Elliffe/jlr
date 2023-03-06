@@ -4,7 +4,6 @@ import { TestMeasurementCreatedEvent } from './events/test-measurement-created.e
 @Injectable()
 export class AppService {
   handleTestMeasurmentCreated(testMeasurementCreatedEvent: TestMeasurementCreatedEvent) {
-    console.log(testMeasurementCreatedEvent);
-    
+    return "success";
   }
 }
