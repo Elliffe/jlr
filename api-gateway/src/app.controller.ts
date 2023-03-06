@@ -12,7 +12,7 @@ export class AppController implements OnModuleInit {
     ) {}
   
   onModuleInit() {
-    this.testMeasurementClient.subscribeToResponseOf('test_measurement_created');
+    this.testMeasurementClient.subscribeToResponseOf('createTestMeasurement');
   }
 
   @Post('test-measurement')

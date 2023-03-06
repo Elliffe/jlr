@@ -12,7 +12,7 @@ export class AppService {
 
   createTestMeasurement(createTestMeasurement: CreateTestMeasurement) {
     this.testMeasurementClient
-      .send('test_measurement_created', new TestMeasurementCreatedEvent(createTestMeasurement.testMeasurement))
+      .send('createTestMeasurement', new TestMeasurementCreatedEvent(createTestMeasurement.testMeasurement))
       .subscribe(testMeasurement => {
         console.log(testMeasurement);
     });
