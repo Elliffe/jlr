@@ -18,6 +18,19 @@ import { AppService } from './app.service';
             groupId: 'test-measurement-consumer'
           }
         }
+      },
+      {
+        name: 'VIDEO_COMPRESSION_SERVICE',
+        transport: Transport.KAFKA,
+        options: {
+          client: {
+            clientId: 'video-compression',
+            brokers: ['localhost:9092']
+          },
+          consumer: {
+            groupId: 'video-compression-consumer'
+          }
+        }
       }
     ])
   ],

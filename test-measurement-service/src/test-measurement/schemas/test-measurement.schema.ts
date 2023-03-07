@@ -14,6 +14,9 @@ export class TestMeasurement {
 
   @Prop({ type: String, enum: TestMeasurementStatus, default: TestMeasurementStatus.PROCESSING })
   status: TestMeasurementStatus;
+
+  @Prop({ required: false })
+  errorMessage: string;
 }
 
 export const TestMeasurementSchema = SchemaFactory.createForClass(TestMeasurement);

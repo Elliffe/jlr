@@ -4,9 +4,13 @@ import { IsString, IsOptional, IsMongoId } from 'class-validator';
 
 export class UpdateTestMeasurementDto extends PartialType(CreateTestMeasurementDto) {
   @IsMongoId()
-  _id: string;
+  testMeasurementId: string;
 
   @IsString()
   @IsOptional()
   videoBlobUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  errorMessage?: string;
 }

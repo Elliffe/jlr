@@ -1,4 +1,4 @@
-import { BadRequestException, Controller } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { TestMeasurementService } from './test-measurement.service';
 import { CreateTestMeasurementDto } from './dtos/create-test-measurement.dto';
@@ -9,8 +9,9 @@ export class TestMeasurementController {
   constructor(private readonly testMeasurementService: TestMeasurementService) {}
 
   @MessagePattern('createTestMeasurement')
-  create(@Payload() createTestMeasurementDto: CreateTestMeasurementDto) {
-    return this.testMeasurementService.create(createTestMeasurementDto);
+  async create(@Payload() createTestMeasurementDto: CreateTestMeasurementDto) {
+    const newTestMeasurement = await this.testMeasurementService.create(createTestMeasurementDto);
+    return JSON.stringify(newTestMeasurement);
   }
 
   @MessagePattern('findAllTestMeasurement')
@@ -25,7 +26,9 @@ export class TestMeasurementController {
 
   @MessagePattern('updateTestMeasurement')
   update(@Payload() updateTestMeasurementDto: UpdateTestMeasurementDto) {
-    return this.testMeasurementService.update(updateTestMeasurementDto._id, updateTestMeasurementDto);
+    console.log("updateTestMeasurement", updateTestMeasurementDto);
+    
+    return this.testMeasurementService.update(updateTestMeasurementDto.testMeasurementId, updateTestMeasurementDto);
   }
 
   @MessagePattern('removeTestMeasurement')
