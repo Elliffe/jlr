@@ -15,18 +15,18 @@ export class TestMeasurementController {
   }
 
   @MessagePattern('findAllTestMeasurement')
-  findAll() {
-    return this.testMeasurementService.findAll();
+  async findAll() {
+    return (await this.testMeasurementService.findAll()).toString();
   }
 
   @MessagePattern('findOneTestMeasurement')
-  findOne(@Payload() id: string) {
-    return this.testMeasurementService.findOne(id);
+  async findOne(@Payload() id: string) {
+    return (await this.testMeasurementService.findOne(id)).toObject();
   }
 
   @MessagePattern('updateTestMeasurement')
-  update(@Payload() updateTestMeasurementDto: UpdateTestMeasurementDto) {
-    return this.testMeasurementService.update(updateTestMeasurementDto.testMeasurementId, updateTestMeasurementDto);
+  async update(@Payload() updateTestMeasurementDto: UpdateTestMeasurementDto) {
+    return (await this.testMeasurementService.update(updateTestMeasurementDto.testMeasurementId, updateTestMeasurementDto)).toObject();
   }
 
   @MessagePattern('removeTestMeasurement')

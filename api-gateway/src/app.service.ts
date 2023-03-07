@@ -7,7 +7,7 @@ import { TestMeasurementCreatedEvent } from './events/test-measurement-created.e
 
 @Injectable()
 export class AppService {
-
+  
   constructor(
     @Inject('TEST_MEASUREMENT_SERVICE') private readonly testMeasurementClient: ClientKafka,
     @Inject('VIDEO_COMPRESSION_SERVICE') private readonly videoCompressionClient: ClientKafka
@@ -26,6 +26,13 @@ export class AppService {
     return this.videoCompressionClient.emit(
       'compressVideo', 
       new CompressVideoEvent(testMeasurementId, videoFile)
+    )
+  }
+  
+  getTestMeasurement(id: string) {
+    return this.testMeasurementClient.send(
+      'findOneTestMeasurement',
+      id
     )
   }
 }

@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { TestMeasurementService } from './test-measurement.service';
 import { TestMeasurement } from './schemas/test-measurement.schema';
 import { CreateTestMeasurementDto } from './dtos/create-test-measurement.dto';
+import { UpdateTestMeasurementDto } from './dtos/update-test-measurement.dto';
 
 const mockTestMeasurement: CreateTestMeasurementDto = { testMeasurement: '' };
 const mockTestMeasurementModel = {
@@ -60,7 +61,7 @@ describe('TestMeasurementService', () => {
 
   describe('Update a TestMeasurement', () => {
     it(`Should call findByIdAndUpdate on the model`, () => {
-      service.update('mock id', { _id: 'mock id' })
+      service.update('mock id', {testMeasurementId: 'mock id'})
       expect(mockTestMeasurementModel.findByIdAndUpdate).toBeCalled();
     });
   });
