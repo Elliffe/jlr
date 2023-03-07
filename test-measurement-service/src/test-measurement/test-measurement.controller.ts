@@ -11,7 +11,7 @@ export class TestMeasurementController {
   @MessagePattern('createTestMeasurement')
   async create(@Payload() createTestMeasurementDto: CreateTestMeasurementDto) {
     const newTestMeasurement = await this.testMeasurementService.create(createTestMeasurementDto);
-    return JSON.stringify(newTestMeasurement);
+    return newTestMeasurement.toObject();
   }
 
   @MessagePattern('findAllTestMeasurement')
@@ -26,8 +26,6 @@ export class TestMeasurementController {
 
   @MessagePattern('updateTestMeasurement')
   update(@Payload() updateTestMeasurementDto: UpdateTestMeasurementDto) {
-    console.log("updateTestMeasurement", updateTestMeasurementDto);
-    
     return this.testMeasurementService.update(updateTestMeasurementDto.testMeasurementId, updateTestMeasurementDto);
   }
 
